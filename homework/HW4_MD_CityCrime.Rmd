@@ -62,3 +62,22 @@ Mayor Brandon Scott ran on the platform of decreased violence and his policies s
 ### Task 9: Save Your Work and Put it on GitHub
 
 Save this notebook, then commit it to your local repository. Push the changes to your GitHub repository and submit the URL for this file in ELMS.
+
+### Task 10: Take the HW4_MD_CityCrime.Rmd notebook you worked on and add a section at the bottom called Task 10. Your task will be to take the violent crime rates for 2020 and do three things:
+
+Using the 2020 violent crime rate, calculate the percentiles using `ntile()`. Save the results to a new dataframe called `md_cities_percentiles`. How many cities are above the 90th percentile?
+Calculate the Interquartile Range of the 2020 violent crime rate using `summarize()` and R's `IQR()` function. The syntax is similar to how `mean()` works.
+Do the results change your best story idea from the previous assignment? Why or why not?
+As usual, save the notebook, then commit it to your local repository. Push the changes to your GitHub repository and submit the URL for this file in ELMS.
+
+```{r}
+md_cities_percentiles <- md_cities_change <- md_cities_rates |> mutate (percentile = ntile(md_cities_rates, 100))
+```
+
+10 cities are above the 90th percentile
+
+```{r}
+md_cities_percentiles |> summarize(violent_crime_IQR = IQR(violent_rate_2020, na.rm = TRUE))
+```
+This does change my idea for the best story but not subject wise, it just changes my angle. 50% of Maryland cities have a violent crime rate of about 42%, Baltimore's dropped however it dropped to 160% placing the city in one of the lowest percentiles. While originally I wanted my story to be on Baltimore's reduction in violent crime I would now mention that it's safer but it still remains extremely dangerous. 
+
