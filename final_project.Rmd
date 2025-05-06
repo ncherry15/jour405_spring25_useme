@@ -1,0 +1,46 @@
+---
+title: "Funding Disparities Between HBCUs and PWIs"
+author: "Nyla Cherry"
+---
+
+# Final Project Notebook
+
+## Introduction
+
+This project investigates funding disparities between Historically Black Colleges and Universities (HBCUs) and Predominantly White Institutions (PWIs). The primary hypothesis is that HBCUs receive significantly less federal and state funding per full-time equivalent (FTE) student than comparable PWIs, contributing to gaps in institutional resources, graduation outcomes, and academic support services. 
+
+We will use data from the early 2000s to the present to track funding trends over time and analyze how disparities correlate with institutional outcomes such as spending, graduation rates, and access to academic resources.
+
+## Data Sources
+
+We are using three main sources:
+
+1. **IPEDS (Integrated Postsecondary Education Data System) - U.S. Department of Education**
+   - Source: [IPEDS Data Center](https://nces.ed.gov/ipeds/datacenter/InstitutionByName.aspx?sid=4feaf0bb-0f65-49c0-b588-2580c07d593d&rtid=1)
+   - IPEDS provides downloadable CSVs with data on funding, enrollment, institutional characteristics, and outcomes.
+
+2. **NCES College Navigator**
+   - Source: [College Navigator](https://nces.ed.gov/collegenavigator/)
+   - This site is used for supplementary institution-level data (e.g., classification as HBCU, tuition, size).
+
+3. **State Higher Education Finance (SHEF) Report**
+   - Source: [SHEF Report](https://shef.sheeo.org/)
+   - Provides state-level funding trends and policy context.
+
+### Current Progress
+
+We’ve begun by downloading IPEDS finance and enrollment datasets for a representative sample of HBCUs and matched PWIs.
+
+## Data Loading
+
+```r
+# Load necessary packages
+library(tidyverse)
+library(readr)
+library(janitor)
+
+# Load sample IPEDS finance data (example file path)
+finance_data <- read_csv("data/IPEDS_finance_2022.csv") %>% clean_names()
+
+# Load enrollment data
+enrollment_data <- read_csv("data/IPEDS_enrollment_2022.csv") %>% clean_names()
