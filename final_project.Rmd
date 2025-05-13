@@ -73,5 +73,75 @@ year2_data <- read_csv("/Users/lornizzle/Downloads/jour405 final proj data/2024d
 
 The dataset includes institutional-level data for 10 public HBCUs and 10 matched public PWIs from the 2023 and 2024 academic years, with each institution identified by UnitID. It contains variables on federal and state appropriations, instructional spending, total core expenses, academic support, and full-time equivalent (FTE) enrollment, which are critical for calculating per-student funding and expenditures. Initial observations show that PWIs generally receive higher appropriations per FTE student and allocate more to instruction and academic resources than HBCUs, supporting the hypothesis of funding-related disparities. However, the dataset lacks student outcome metrics like graduation rates by race or income, which could further clarify the impact of funding gaps. Additional data on financial aid, faculty ratios, or detailed Carnegie classifications may be needed to strengthen comparisons, and it would be helpful to confirm whether any spending categories overlap to ensure accurate analysis.
 
-##Tests I could Run
+##Tests I Could Run
 Based on the analyses we've practiced in class, I plan to use several methods to examine funding disparities between HBCUs and PWIs. First, I will calculate key descriptive statistics (mean, standard deviation, minimum, and maximum) for variables like appropriations per FTE, instructional spending, and core expenses. To test for statistically significant differences between HBCUs and PWIs, I will use ANOVA, followed by Tukey’s HSD test if I expand the comparison to more than two institution types or regions. If appropriate, I may also apply linear regression models to explore whether funding levels predict instructional spending or outcomes like graduation rates. For any categorical comparisons, such as regional classification or control type, I may use a chi-square test to assess differences in distributions. Additionally, I’ll compute percent changes in funding or spending between 2023 and 2024 to examine short-term shifts across both groups.
+
+##Trials and Error
+# Merge datasets
+```{r}
+merged_data <- merge(year1_data, year2_data, by = `institution name...2`, suffixes = c("_2023", "_2024"))
+```
+
+I got this code from google, how do I properly merge the datasets? I was only able to download the data by separate years and I want to combine the data sets. This is saying the column isnt found but i know it is in the data set because I used it for other calculations.
+#1. Descriptive statistics
+```{r}
+descriptive_stats23 <- year1_data |> 
+  summarise(
+    mean = mean(`F2223_F1A.Pell grants (federal)`),
+    sd = sd(`F2223_F1A.Pell grants (federal)`),
+    n = n(),
+    min = min(`F2223_F1A.Pell grants (federal)`),
+    max = max(`F2223_F1A.Pell grants (federal)`)
+  )
+```
+```{r}
+descriptive_stats24 <- year2_data |> 
+  summarise(
+    mean = mean(`F2122_F1A_RV.Pell grants (federal)`),
+    sd = sd(`F2122_F1A_RV.Pell grants (federal)`),
+    n = n(),
+    min = min(`F2122_F1A_RV.Pell grants (federal)`),
+    max = max(`F2122_F1A_RV.Pell grants (federal)`)
+  )
+```
+#2. Finding St Appropriations per FTE
+```{r}
+year1_data <- year1_data |>
+  mutate(State_Appropriations_per_FTE = `F2223_F1A.State appropriations` / `DRVEF2023.Full-time equivalent fall enrollment`)
+
+year2_data <- year2_data |>
+  mutate(State_Appropriations_per_FTE = `F2122_F1A_RV.State appropriations` / `DRVEF2022_RV.Full-time equivalent fall enrollment`)
+```
+#3. Find HBCUs
+```{r}
+hbcu_list <- c("Alabama A & M University", "Albany State University", "Alcorn State University", "Bowie State University","Delaware State University","Florida A&M University","Jackson State University","North Carolina A & T State University","Prairie View A & M University","Virginia State University")
+
+# Add Institution_Type column
+year1_data <- year1_data |>
+  rename(Institution = `institution name...2`) |>
+ mutate(Institution_Type = ifelse(Institution %in% hbcu_list, "HBCU", "PWI"))
+```
+
+```{r}
+hbcu_list <- c("Alabama A & M University", "Albany State University", "Alcorn State University", "Bowie State University","Delaware State University","Florida A&M University","Jackson State University","North Carolina A & T State University","Prairie View A & M University","Virginia State University")
+
+# Add Institution_Type column
+year2_data <- year2_data |>
+  rename(Institution = `institution name...2`) |>
+ mutate(Institution_Type = ifelse(Institution %in% hbcu_list, "HBCU", "PWI"))
+```
+
+#4. ANOVA Tests
+```{r}
+anova_result <- aov(State_Appropriations_per_FTE ~ Institution_Type, data = year1_data)
+summary(anova_result)
+
+anova_result <- aov(State_Appropriations_per_FTE ~ Institution_Type, data = year2_data)
+summary(anova_result)
+```
+#ANOVA Results
+In 2023, the average state appropriations per FTE across the 20 institutions was about $16.9 million, with a standard deviation of $9.8 million, indicating substantial variation in funding levels. An ANOVA test comparing HBCUs and PWIs showed no statistically significant difference in appropriations per FTE (p = 0.435), suggesting that any observed funding disparities between the groups could be due to random variation.
+
+In 2024, the average state appropriations per FTE among the 20 institutions was approximately $15.8 million, with a standard deviation of $9.4 million, again showing wide variation in funding. The ANOVA results indicated no statistically significant difference between HBCUs and PWIs in appropriations per FTE (p = 0.402), suggesting funding levels remained relatively comparable across institution types.
+
+Between 2023 and 2024, the average state appropriations per FTE decreased slightly from $16.9 million to $15.8 million, with variability remaining high in both years. ANOVA results for both years showed no statistically significant differences in funding between HBCUs and PWIs, indicating consistent patterns across time.
