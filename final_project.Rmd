@@ -9,38 +9,66 @@ author: "Nyla Cherry"
 
 This project investigates funding disparities between Historically Black Colleges and Universities (HBCUs) and Predominantly White Institutions (PWIs). The primary hypothesis is that HBCUs receive significantly less federal and state funding per full-time equivalent (FTE) student than comparable PWIs, contributing to gaps in institutional resources, graduation outcomes, and academic support services. 
 
-We will use data from the early 2000s to the present to track funding trends over time and analyze how disparities correlate with institutional outcomes such as spending, graduation rates, and access to academic resources.
+I am using data from 2023 and 2024 to track funding trends over time and analyze how disparities correlate with institutional outcomes such as spending, graduation rates, and access to academic resources.
 
-## Data Sources
+# Data Sources
 
-We are using three main sources:
+I am using two main sources:
 
 1. **IPEDS (Integrated Postsecondary Education Data System) - U.S. Department of Education**
    - Source: [IPEDS Data Center](https://nces.ed.gov/ipeds/datacenter/InstitutionByName.aspx?sid=4feaf0bb-0f65-49c0-b588-2580c07d593d&rtid=1)
    - IPEDS provides downloadable CSVs with data on funding, enrollment, institutional characteristics, and outcomes.
+   - After using College Navigator to select my 20 institutions, I then manually entered their names into "select institutions". For 2023 and 2024 I selected 12 variables: 
+1. Under Finance
+- Federal appropriations and grants
+
+- State appropriations
+
+- Total revenues
+
+- Academic support expenditures
+
+- Total core expenses
+
+2. Under Fall Enrollment
+- Full-time equivalent (FTE) enrollment
+
+3. Under Institutional Characteristics
+- Name
+
+- Unit ID
+
+- State
+
+- Control (public)
+
+- Sector
+   
 
 2. **NCES College Navigator**
-   - Source: [College Navigator](https://nces.ed.gov/collegenavigator/)
-   - This site is used for supplementary institution-level data (e.g., classification as HBCU, tuition, size).
+  - Source: [College Navigator](https://nces.ed.gov/collegenavigator/)
+  - This site is used for supplementary institution-level data (e.g., classification as HBCU, tuition, size).
+  - I chose 10 4-year public HBCUs that varied in both location and size. I then chose comparable PWIs for each HBCU. I focused on 4-year public PWIs that were close in enrollment and location to my already selected HBCUs to try to keep the comparison as fair as possible. 
 
-3. **State Higher Education Finance (SHEF) Report**
-   - Source: [SHEF Report](https://shef.sheeo.org/)
-   - Provides state-level funding trends and policy context.
-
-### Current Progress
-
-We’ve begun by downloading IPEDS finance and enrollment datasets for a representative sample of HBCUs and matched PWIs.
 
 ## Data Loading
 
-```r
-# Load necessary packages
+# Data Set Up
+```{r setup}
 library(tidyverse)
 library(readr)
 library(janitor)
+```
 
-# Load sample IPEDS finance data (example file path)
-finance_data <- read_csv("data/IPEDS_finance_2022.csv") %>% clean_names()
+# Load 2023 Data
+```{r}
+year1_data <- read_csv("/Users/lornizzle/Downloads/jour405 final proj data/2023data.csv")
+```
 
-# Load enrollment data
-enrollment_data <- read_csv("data/IPEDS_enrollment_2022.csv") %>% clean_names()
+# Load 2024 Data
+```{r}
+year2_data <- read_csv("/Users/lornizzle/Downloads/jour405 final proj data/2024data.csv")
+```
+### Current Progress
+
+The dataset includes institutional-level data for 10 public HBCUs and 10 matched public PWIs from the 2023 and 2024 academic years, with each institution identified by UnitID. It contains variables on federal and state appropriations, instructional spending, total core expenses, academic support, and full-time equivalent (FTE) enrollment, which are critical for calculating per-student funding and expenditures. Initial observations show that PWIs generally receive higher appropriations per FTE student and allocate more to instruction and academic resources than HBCUs, supporting the hypothesis of funding-related disparities. However, the dataset lacks student outcome metrics like graduation rates by race or income, which could further clarify the impact of funding gaps. Additional data on financial aid, faculty ratios, or detailed Carnegie classifications may be needed to strengthen comparisons, and it would be helpful to confirm whether any spending categories overlap to ensure accurate analysis.
