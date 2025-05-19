@@ -182,9 +182,39 @@ key_stats23 <- year2_data |>
     max = max(fed_grants, na.rm = TRUE)
   )
 ```
+#7. Boxplot to Show Federal Funding Disparities
+A boxplot is useful for my analysis because it clearly shows how federal grant funding per FTE differs between HBCUs and PWIs. It highlights not just the average funding levels, but also the range and variability, helping reveal whether HBCUs consistently receive less funding or if the distribution is more uneven. This visual makes it easier to support claims about funding disparities and identify patterns that summary statistics alone might miss.
 
-#7. Regression Analysis for Federal Grants/FTE and Graduation Rates
-This linear regression model tests how graduation rates are related to federal grants per full-time equivalent, HBCU status, and the interaction between the two for 2023 data. It checks whether federal funding impacts graduation rates differently at HBCUs compared to PWIs. The model summary provides estimates and significance levels to help understand these relationships and if federal grants influence graduation outcomes based on institution type.
+
+```{r}
+
+ggplot(year2_data, aes(x = HBCU, y = fg_FTE, fill = HBCU)) +
+  geom_boxplot(alpha = 100000) +
+  labs(
+    title = "Federal Grants per FTE by Institution Type (2023)",
+    x = "HBCU",
+    y = "Federal Grants per Full-Time Equivalent (FTE)"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+```{r}
+
+ggplot(year1_data, aes(x = HBCU, y = fg_FTE, fill = HBCU)) +
+  geom_boxplot(alpha = 1000000) +
+  labs(
+    title = "Federal Grants per FTE by Institution Type (2022)",
+    x = "HBCU",
+    y = "Federal Grants per Full-Time Equivalent (FTE)"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+#Box Plot Analysis
+In both charts, HBCUs received more federal grant money per FTE than non-HBCUs.The first chart shows a wider range of grant values for HBCUs, including some very high outliers, while non-HBCUs had much lower and more consistent amounts.The second chart presents more balanced and higher median grant levels for both groups, but HBCUs still clearly receive more federal funding per student on average. This analysis was particularly helpful because it provided a different perspective than any of the other models.
+
+#8. Regression Analysis for Federal Grants/FTE and Graduation Rates
+This linear regression model tests how graduation rates are related to federal grants per full-time equivalent, HBCU status, and the interaction between the two for 2023 data. It checks whether federal funding impacts graduation rates differently at HBCUs compared to PWIs. The model summary provides estimates and significance levels to help understand these relationships and if federal grants influence graduation outcomes based on institution type. It emphasized that federal funding is not the cause for a lowered graduation rate.
 
 ```{r}
 model <- lm(grad_rate ~ fg_FTE * HBCU, data = year2_data)
@@ -196,7 +226,7 @@ In 2022, PWIs received significantly more federal grant funding per FTE than HBC
 The amount of federal grants per FTE does not have a meaningful or significant effect on graduation rates for either group. Additionally, the interaction term suggests that the relationship between federal grants and graduation rates does not differ significantly between HBCUs and PWIs.
 
 #Final Conclusion and Story Ideas
-This project explored how differences in funding between HBCUs and PWIs relate to graduation outcomes. The data revealed that HBCUs consistently receive less state funding per student than PWIs, with significant differences found in both 2022 and 2023. Although HBCUs received slightly more state appropriations in 2023, the overall trend still points to a persistent funding gap. Graduation rates are significantly lower at HBCUs but state funding levels do not appear to directly impact these outcomes. Similarly, while PWIs received more federal funding per student in 2022 and HBCUs received more in 2023, federal grants had no significant effect on graduation rates for either group. These findings suggest that funding disparities exist and may contribute to long-standing institutional differences, but direct links between funding and graduation outcomes remain complex and inconclusive.
+This project explored how differences in funding between HBCUs and PWIs relate to graduation outcomes. The data revealed that HBCUs consistently receive less state funding per student than PWIs, with significant differences found in both 2022 and 2023. Although HBCUs received slightly more state appropriations in 2023, the overall trend still points to a persistent funding gap. Graduation rates are significantly lower at HBCUs but state funding levels do not appear to directly impact these outcomes. Similarly, while PWIs had a higher average per federal funding per student in 2022 and HBCUs received more in 2023, federal grants had no significant effect on graduation rates for either group. These findings suggest that funding disparities exist and may contribute to long-standing institutional differences, but direct links between funding and graduation outcomes remain complex and inconclusive.
 
 
 Headline:
