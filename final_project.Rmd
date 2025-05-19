@@ -7,18 +7,18 @@ author: "Nyla Cherry"
 
 ## Introduction
 
-This project investigates funding disparities between Historically Black Colleges and Universities (HBCUs) and Predominantly White Institutions (PWIs). The primary hypothesis is that HBCUs receive significantly less federal and state funding per full-time equivalent (FTE) student than comparable PWIs, contributing to gaps in institutional resources, graduation outcomes, and academic support services. 
+This project investigates funding disparities between Historically Black Colleges and Universities (HBCUs) and Predominantly White Institutions (PWIs). The primary hypothesis is that HBCUs receive significantly less federal and state funding per full-time equivalent (FTE) student than comparable PWIs, contributing to gaps in graduation outcomes. 
 
-I am using data from 2023 and 2024 to track funding trends over time and analyze how disparities correlate with institutional outcomes such as spending, graduation rates, and access to academic resources.
+I am using data from 2022 and 2023 to track funding trends over time and analyze how disparities correlate with institutional outcomes such as spending, graduation rates, and access to academic resources.
 
-# Data Sources
+## Data Sources
 
 I am using two main sources:
 
 1. **IPEDS (Integrated Postsecondary Education Data System) - U.S. Department of Education**
    - Source: [IPEDS Data Center](https://nces.ed.gov/ipeds/datacenter/InstitutionByName.aspx?sid=4feaf0bb-0f65-49c0-b588-2580c07d593d&rtid=1)
    - IPEDS provides downloadable CSVs with data on funding, enrollment, institutional characteristics, and outcomes.
-   - After using College Navigator to select my 20 institutions, I then manually entered their names into "select institutions". For 2023 and 2024 I selected 12 variables: 
+   - After using College Navigator to select my 70 institutions, I then manually entered their names into "select institutions". For 2022 and 2023 I selected 11 variables: 
 1. Under Finance
 - Federal appropriations and grants
 
@@ -48,10 +48,11 @@ I am using two main sources:
 2. **NCES College Navigator**
   - Source: [College Navigator](https://nces.ed.gov/collegenavigator/)
   - This site is used for supplementary institution-level data (e.g., classification as HBCU, tuition, size).
-  - I chose 10 4-year public HBCUs that varied in both location and size. I then chose comparable PWIs for each HBCU. I focused on 4-year public PWIs that were close in enrollment and location to my already selected HBCUs to try to keep the comparison as fair as possible. 
+  - I chose 35 4-year public HBCUs that varied in both location and size. I then chose comparable PWIs for each HBCU. I focused on 4-year public PWIs that were close in location to my already selected HBCUs to try to keep the comparison as fair as possible. 
 
 
-## Data Loading
+## Data Loading:
+I loaded the 2022 and 2023 datasets into separate dataframes to keep the data organized for year-by-year comparison. This setup allows me to track funding trends and analyze how disparities between HBCUs and PWIs evolve over time.
 
 # Data Set Up
 ```{r setup}
@@ -60,88 +61,150 @@ library(readr)
 library(janitor)
 ```
 
+
+# Load 2022 Data
+```{r}
+year1_data <- read_csv("/Users/lornizzle/GitHub/jour405_spring25_useme/final_project/2022data.csv")
+```
+
 # Load 2023 Data
 ```{r}
-year1_data <- read_csv("/Users/lornizzle/Downloads/jour405 final proj data/2023data.csv")
+year2_data <- read_csv("/Users/lornizzle/GitHub/jour405_spring25_useme/final_project/2023data.csv")
 ```
+## Current Progress
 
-# Load 2024 Data
-```{r}
-year2_data <- read_csv("/Users/lornizzle/Downloads/jour405 final proj data/2024data.csv")
-```
-### Current Progress
+The dataset includes institutional-level data for 10 public HBCUs and 10 matched public PWIs from the 2022 and 2023 academic years, with each institution identified by UnitID. It contains variables on federal and state appropriations, instructional spending, total core expenses, academic support, and full-time equivalent (FTE) enrollment, which are critical for calculating per-student funding and expenditures. Initial observations show that PWIs generally receive higher appropriations per FTE student and allocate more to instruction and academic resources than HBCUs, supporting the hypothesis of funding-related disparities. However, the dataset lacks student outcome metrics like graduation rates by race or income, which could further clarify the impact of funding gaps. Additional data on financial aid, faculty ratios, or detailed Carnegie classifications may be needed to strengthen comparisons, and it would be helpful to confirm whether any spending categories overlap to ensure accurate analysis.
 
-The dataset includes institutional-level data for 10 public HBCUs and 10 matched public PWIs from the 2023 and 2024 academic years, with each institution identified by UnitID. It contains variables on federal and state appropriations, instructional spending, total core expenses, academic support, and full-time equivalent (FTE) enrollment, which are critical for calculating per-student funding and expenditures. Initial observations show that PWIs generally receive higher appropriations per FTE student and allocate more to instruction and academic resources than HBCUs, supporting the hypothesis of funding-related disparities. However, the dataset lacks student outcome metrics like graduation rates by race or income, which could further clarify the impact of funding gaps. Additional data on financial aid, faculty ratios, or detailed Carnegie classifications may be needed to strengthen comparisons, and it would be helpful to confirm whether any spending categories overlap to ensure accurate analysis.
-
-##Tests I Could Run
-Based on the analyses we've practiced in class, I plan to use several methods to examine funding disparities between HBCUs and PWIs. First, I will calculate key descriptive statistics (mean, standard deviation, minimum, and maximum) for variables like appropriations per FTE, instructional spending, and core expenses. To test for statistically significant differences between HBCUs and PWIs, I will use ANOVA, followed by Tukey’s HSD test if I expand the comparison to more than two institution types or regions. If appropriate, I may also apply linear regression models to explore whether funding levels predict instructional spending or outcomes like graduation rates. For any categorical comparisons, such as regional classification or control type, I may use a chi-square test to assess differences in distributions. Additionally, I’ll compute percent changes in funding or spending between 2023 and 2024 to examine short-term shifts across both groups.
+## Tests I Could Run
+Based on the analyses we've practiced in class, I plan to use several methods to examine funding disparities between HBCUs and PWIs. First, I will calculate key descriptive statistics (mean, standard deviation, minimum, and maximum) for variables like appropriations per FTE, instructional spending, and core expenses. To test for statistically significant differences between HBCUs and PWIs, I will use ANOVA, followed by Tukey’s HSD test if I expand the comparison to more than two institution types or regions. If appropriate, I may also apply linear regression models to explore whether funding levels predict instructional spending or outcomes like graduation rates. For any categorical comparisons, such as regional classification or control type, I may use a chi-square test to assess differences in distributions. Additionally, I’ll compute percent changes in funding or spending between 2022 and 2023 to examine short-term shifts across both groups.
 
 ##Trials and Error
 # Merge datasets
+Merging the 2022 and 2023 dataframes would allow me to analyze changes and trends across both years in a single, unified dataset. This combined view makes it easier to identify consistent patterns in funding disparities and their impact on graduation rates over time.
+
 ```{r}
 merged_data <- merge(year1_data, year2_data, by = `institution name...2`, suffixes = c("_2023", "_2024"))
 ```
 
 I got this code from google, how do I properly merge the datasets? I was only able to download the data by separate years and I want to combine the data sets. This is saying the column isnt found but i know it is in the data set because I used it for other calculations.
-#1. Descriptive statistics
-```{r}
-descriptive_stats23 <- year1_data |> 
-  summarise(
-    mean = mean(`F2223_F1A.Pell grants (federal)`),
-    sd = sd(`F2223_F1A.Pell grants (federal)`),
-    n = n(),
-    min = min(`F2223_F1A.Pell grants (federal)`),
-    max = max(`F2223_F1A.Pell grants (federal)`)
-  )
-```
-```{r}
-descriptive_stats24 <- year2_data |> 
-  summarise(
-    mean = mean(`F2122_F1A_RV.Pell grants (federal)`),
-    sd = sd(`F2122_F1A_RV.Pell grants (federal)`),
-    n = n(),
-    min = min(`F2122_F1A_RV.Pell grants (federal)`),
-    max = max(`F2122_F1A_RV.Pell grants (federal)`)
-  )
-```
-#2. Finding St Appropriations per FTE
+
+#1. Finding St Appropriations per FTE
+Calculating state appropriations per full-time equivalent (FTE) student helps standardize funding amounts by accounting for the size of each institution’s student body. This metric allows for a fair comparison of funding levels between HBCUs and PWIs, regardless of enrollment differences. Understanding funding on a per-student basis is crucial to assessing whether resources are equitably distributed and how they might relate to student outcomes like graduation rates.
+
 ```{r}
 year1_data <- year1_data |>
-  mutate(State_Appropriations_per_FTE = `F2223_F1A.State appropriations` / `DRVEF2023.Full-time equivalent fall enrollment`)
+  mutate(st_app_FTE = `state_app` / `FTE`)
 
 year2_data <- year2_data |>
-  mutate(State_Appropriations_per_FTE = `F2122_F1A_RV.State appropriations` / `DRVEF2022_RV.Full-time equivalent fall enrollment`)
-```
-#3. Find HBCUs
-```{r}
-hbcu_list <- c("Alabama A & M University", "Albany State University", "Alcorn State University", "Bowie State University","Delaware State University","Florida A&M University","Jackson State University","North Carolina A & T State University","Prairie View A & M University","Virginia State University")
-
-# Add Institution_Type column
-year1_data <- year1_data |>
-  rename(Institution = `institution name...2`) |>
- mutate(Institution_Type = ifelse(Institution %in% hbcu_list, "HBCU", "PWI"))
+  mutate(st_app_FTE = `state_app` / `FTE`)
 ```
 
-```{r}
-hbcu_list <- c("Alabama A & M University", "Albany State University", "Alcorn State University", "Bowie State University","Delaware State University","Florida A&M University","Jackson State University","North Carolina A & T State University","Prairie View A & M University","Virginia State University")
+#2. ANOVA Test
+This ANOVA test compares the average state appropriations per FTE student between HBCUs and non-HBCUs (PWIs) for each year. By treating the HBCU variable as a factor, the test evaluates whether there are statistically significant differences in funding based on institution type. Running the test separately for 2022 and 2023 helps determine if these funding disparities persist or change over time.
 
-# Add Institution_Type column
-year2_data <- year2_data |>
-  rename(Institution = `institution name...2`) |>
- mutate(Institution_Type = ifelse(Institution %in% hbcu_list, "HBCU", "PWI"))
-```
-
-#4. ANOVA Tests
 ```{r}
-anova_result <- aov(State_Appropriations_per_FTE ~ Institution_Type, data = year1_data)
+year1_data$HBCU <- as.factor(year1_data$HBCU)
+
+year2_data$HBCU <- as.factor(year2_data$HBCU)
+
+anova_result <- aov(st_app_FTE ~ HBCU, data = year1_data)
 summary(anova_result)
 
-anova_result <- aov(State_Appropriations_per_FTE ~ Institution_Type, data = year2_data)
+anova_result <- aov(st_app_FTE ~ HBCU, data = year2_data)
 summary(anova_result)
 ```
 #ANOVA Results
-In 2023, the average state appropriations per FTE across the 20 institutions was about $16.9 million, with a standard deviation of $9.8 million, indicating substantial variation in funding levels. An ANOVA test comparing HBCUs and PWIs showed no statistically significant difference in appropriations per FTE (p = 0.435), suggesting that any observed funding disparities between the groups could be due to random variation.
+The results show a statistically significant difference in state appropriations per full-time equivalent (FTE) student between HBCUs and PWIs. The p-value of 0.00419 is well below the common threshold of 0.05, indicating that the difference is unlikely to be due to random chance. This supports the hypothesis that HBCUs receive different—and likely lower—levels of state funding per student compared to similar PWIs.
 
-In 2024, the average state appropriations per FTE among the 20 institutions was approximately $15.8 million, with a standard deviation of $9.4 million, again showing wide variation in funding. The ANOVA results indicated no statistically significant difference between HBCUs and PWIs in appropriations per FTE (p = 0.402), suggesting funding levels remained relatively comparable across institution types.
+The 2023 ANOVA results also show a statistically significant difference in state appropriations per FTE student between HBCUs and PWIs, with a p-value below 0.05. Like the 2022 results, this suggests that the funding gap between the two types of institutions is consistent across years and unlikely to be due to chance. The repeated finding strengthens the overall conclusion that HBCUs systematically receive less state funding per student than comparable PWIs. While 2023's data produced a slightly higher p-value it still reflects a significant difference therefore it is hard to justify this disparity is getting better with time.
 
-Between 2023 and 2024, the average state appropriations per FTE decreased slightly from $16.9 million to $15.8 million, with variability remaining high in both years. ANOVA results for both years showed no statistically significant differences in funding between HBCUs and PWIs, indicating consistent patterns across time.
+#3. Tukey Test
+The Tukey test follows up on the ANOVA by comparing the state appropriations per FTE between each pair of groups—in this case, HBCUs and PWIs—to pinpoint exactly which groups differ. It provides adjusted p-values to control for multiple comparisons, ensuring the differences identified are statistically reliable. This helps confirm whether the funding gap between HBCUs and PWIs is significant and by how much.
+
+```{r}
+tukey_results <- TukeyHSD(anova_result)
+print(tukey_results)
+```
+#Tukey Results
+The Tukey test showed that there is a statistically significant difference in funding per FTE student between HBCUs and non-HBCUs. On average, HBCUs received about $4,965 less per FTE than non-HBCUs in 2023. This difference is unlikely to be due to chance, as the adjusted p-value was 0.0026.
+
+#4. Regression Analysis for State Appropriiations/FTE
+This codeblock groups the 2023 data by the HBCU status and calculates the average graduation rate for each group. By summarizing the mean graduation rates separately for HBCUs and PWIs, it helps compare student outcomes between the two types of institutions. This provides a clear picture of how graduation rates differ based on whether a school is an HBCU or not.
+
+This linear regression model examines how graduation rates are influenced by state appropriations per FTE students, HBCU status, and the interaction between the two. It tests whether funding impacts graduation rates differently for HBCUs compared to PWIs. The summary provides estimates and significance levels to understand these relationships and their strength.
+
+#Find Average Graduation Rate for 2023
+```{r}
+year2_data |>
+  group_by(HBCU) |>
+  summarize(avg_grad_rate = mean(grad_rate, na.rm = TRUE))
+```
+
+```{r}
+model <- lm(grad_rate ~ st_app_FTE * HBCU, data = year2_data)
+summary(model)
+```
+# Model Analysis
+On average, PWIs have a graduation rate of about 42%. For PWIs, state appropriations per student show a small positive but not statistically significant effect on graduation rates. HBCUs have graduation rates about 23 percent lower than PWIs, which is a significant difference. However, the interaction term shows that the effect of state appropriations on graduation rates for HBCUs is not significantly different from PWIs, meaning funding doesn’t seem to impact graduation rates. Overall, institution type (HBCU vs. PWI) is a strong predictor of graduation rates, but state funding’s role is unclear.
+
+#5. Finding Federal Grants per FTE
+I created the variable `fg_FTE` to measure federal grants received per FTE student, which standardizes funding relative to institution size. This allows for a fair comparison of federal grant funding between schools, regardless of enrollment differences. Including this variable in the analysis helps assess how federal funding per student relates to outcomes like graduation rates across both years. I wanted to be sure to examine both state and federal funding.
+
+```{r}
+year1_data <- year1_data |>
+  mutate(fg_FTE = `fed_grants` / `FTE`)
+
+year2_data <- year2_data |>
+  mutate(fg_FTE = `fed_grants` / `FTE`)
+```
+#6. Summary Statistics for Federal Grants/FTE
+These code blocks calculate key summary statistics for federal grants separately for 2022 and 2023, grouped by whether the institution is an HBCU or not. For each group, the code finds the average amount of federal grants, the variation (sd), the number of observations, and the minimum and maximum grant amounts. This helps compare the distribution and range of federal funding received by HBCUs versus PWIs in each year.
+
+```{r}
+key_stats22 <- year1_data |> 
+  group_by(HBCU) |>
+  summarise(
+    mean = mean(fed_grants, na.rm = TRUE),
+    sd = sd(fed_grants, na.rm = TRUE),
+    n = n(),
+    min = min(fed_grants, na.rm = TRUE),
+    max = max(fed_grants, na.rm = TRUE)
+  )
+```
+```{r}
+key_stats23 <- year2_data |> 
+  group_by(HBCU) |>
+  summarise(
+    mean = mean(fed_grants, na.rm = TRUE),
+    sd = sd(fed_grants, na.rm = TRUE),
+    n = n(),
+    min = min(fed_grants, na.rm = TRUE),
+    max = max(fed_grants, na.rm = TRUE)
+  )
+```
+
+#7. Regression Analysis for Federal Grants/FTE and Graduation Rates
+This linear regression model tests how graduation rates are related to federal grants per full-time equivalent, HBCU status, and the interaction between the two for 2023 data. It checks whether federal funding impacts graduation rates differently at HBCUs compared to PWIs. The model summary provides estimates and significance levels to help understand these relationships and if federal grants influence graduation outcomes based on institution type.
+
+```{r}
+model <- lm(grad_rate ~ fg_FTE * HBCU, data = year2_data)
+summary(model)
+```
+#Federal Grant Analysis
+In 2022, PWIs received significantly more federal grant funding per FTE than HBCUs, averaging about $17.7 million compared to $11.4 million. However, in 2023, HBCUs received more than PWIs, averaging $5.4 million versus $3.3 million. While federal funding favored HBCUs, HBCUs also experienced greater variability in the amounts received.
+
+The amount of federal grants per FTE does not have a meaningful or significant effect on graduation rates for either group. Additionally, the interaction term suggests that the relationship between federal grants and graduation rates does not differ significantly between HBCUs and PWIs.
+
+#Final Conclusion and Story Ideas
+This project explored how differences in funding between HBCUs and PWIs relate to graduation outcomes. The data revealed that HBCUs consistently receive less state funding per student than PWIs, with significant differences found in both 2022 and 2023. Although HBCUs received slightly more state appropriations in 2023, the overall trend still points to a persistent funding gap. Graduation rates are significantly lower at HBCUs but state funding levels do not appear to directly impact these outcomes. Similarly, while PWIs received more federal funding per student in 2022 and HBCUs received more in 2023, federal grants had no significant effect on graduation rates for either group. These findings suggest that funding disparities exist and may contribute to long-standing institutional differences, but direct links between funding and graduation outcomes remain complex and inconclusive.
+
+
+Headline:
+Funding Gaps Persist: HBCUs Receive Less Support Than PWIs, Impacting Student Outcomes
+
+Lede:
+Despite their crucial role in educating underrepresented students, Historically Black Colleges and Universities (HBCUs) continue to receive significantly less state and federal funding per student than their predominantly white counterparts.
+
+While graduation rates at HBCUs are notably lower, New data from 2022 and 2023 suggests that funding alone doesn't fully explain the gap. The analysis is pointing to a deeper, more complex issue in how support is allocated and outcomes are shaped across different types of institutions.
+
+For this story, I would want to speak with administrators and financial officers at both HBCUs and PWIs to understand how funding levels affect their operations and student success. Additionally, experts in higher education policy, such as researchers from think tanks or advocacy groups focused on educational equity, could provide insight into systemic funding disparities and their long-term impact.

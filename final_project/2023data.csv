@@ -1,0 +1,71 @@
+unitid,institution_name,year,state,HBCU,institution_sector,FTE,federal_app,state_app,academic_support,total_rev,fed_grants,core_expenses,grad_rate
+100654,Alabama A & M University,2023,Alabama,Yes,"Public, 4-year or above",6031,2303040,74140134,8910325,232809852,10434767,190299674,15
+100724,Alabama State University,2023,Alabama,Yes,"Public, 4-year or above",3545,0,69270686,20251707,182037788,318922,147942742,13
+100858,Auburn University,2023,Alabama,No,"Public, 4-year or above",29685,0,372626667,200705568,1553599802,1511846,1155922209,57
+101879,University of North Alabama,2023,Alabama,No,"Public, 4-year or above",7280,0,64162803,7392522,183337305,173097,136686858,33
+130934,Delaware State University,2023,Delaware,Yes,"Public, 4-year or above",5221,0,45905871,5533412,218849537,628241,201077202,28
+131399,University of the District of Columbia,2023,District of Columbia,Yes,"Public, 4-year or above",2459,0,96502038,17726817,208632961,45245552,188647063,23
+133650,Florida Agricultural and Mechanical University,2023,Florida,Yes,"Public, 4-year or above",8483,0,130006631,63141725,461724102,3709134,332441846,27
+138354,University of West Florida,2023,Florida,No,"Public, 4-year or above",9901,0,98849197,33156468,264348742,272000,208695267,47
+138716,Albany State University,2023,Georgia,Yes,"Public, 4-year or above",5435,0,35963572,8257118,133108826,8037284,108331584,14
+139719,Fort Valley State University,2023,Georgia,Yes,"Public, 4-year or above",2558,5430527,29617614,14469769,102988096,1456401,83203614,18
+139764,Georgia Southwestern State University,2023,Georgia,No,"Public, 4-year or above",2606,0,20732973,3352898,54868484,573066,42073069,20
+139931,Georgia Southern University,2023,Georgia,No,"Public, 4-year or above",22246,0,160221268,54878747,487407691,2780712,376378556,34
+140960,Savannah State University,2023,Georgia,Yes,"Public, 4-year or above",2740,0,24935134,8450986,90378947,1146259,55230614,17
+157058,Kentucky State University,2023,Kentucky,Yes,"Public, 4-year or above",1448,0,27916464,879358,91255959,450271,75585165,15
+157085,University of Kentucky,2023,Kentucky,No,"Public, 4-year or above",30189,0,319235100,150923964,7119829778,3361520,2018703216,54
+159009,Grambling State University,2023,Louisiana,Yes,"Public, 4-year or above",4375,0,17707523,3404168,117934690,1965778,78707775,9
+159391,Louisiana State University and Agricultural & Mechanical College,2023,Louisiana,No,"Public, 4-year or above",35376,0,285164070,131151924,1548580266,3853526,1239329036,46
+159647,Louisiana Tech University,2023,Louisiana,No,"Public, 4-year or above",9713,0,35877264,18916785,205270333,418120,144141881,41
+160621,Southern University and A & M College,2023,Louisiana,Yes,"Public, 4-year or above",6310,0,37692949,24194783,191275108,806016,148347519,10
+162007,Bowie State University,2023,Maryland,Yes,"Public, 4-year or above",5453,0,72755092,39072216,249817634,9213895,154509413,15
+162283,Coppin State University,2023,Maryland,Yes,"Public, 4-year or above",1730,0,62651967,10725664,118895577,396857,87175236,10
+162584,Frostburg State University,2023,Maryland,No,"Public, 4-year or above",3290,0,55047296,10859070,146726669,170987,93351160,33
+163268,University of Maryland-Baltimore County,2023,Maryland,No,"Public, 4-year or above",12532,0,190913456,36095821,591087431,509701,483537132,48
+163286,University of Maryland-College Park,2023,Maryland,No,"Public, 4-year or above",38060,0,759629441,238480552,2640225944,5032182,2065211173,76
+163338,University of Maryland Eastern Shore,2023,Maryland,Yes,"Public, 4-year or above",2577,0,64020456,7793070,168678756,3533392,128450947,19
+163453,Morgan State University,2023,Maryland,Yes,"Public, 4-year or above",9260,0,155483081,39984523,447772420,828359,351819358,22
+163851,Salisbury University,2023,Maryland,No,"Public, 4-year or above",6549,0,78645174,20256592,203104325,241337,156551415,49
+164076,Towson University,2023,Maryland,No,"Public, 4-year or above",17093,0,179883214,45298898,570450443,1119162,378553593,45
+175342,Alcorn State University,2023,Mississippi,Yes,"Public, 4-year or above",2431,0,29271910,7397966,108260868,1210192,73980044,35
+175616,Delta State University,2023,Mississippi,No,"Public, 4-year or above",2094,0,26450897,6196684,72728224,433504,66533525,31
+175856,Jackson State University,2023,Mississippi,Yes,"Public, 4-year or above",5687,0,46133678,9415211,219282740,5193022,172776217,19
+176035,Mississippi University for Women,2023,Mississippi,No,"Public, 4-year or above",1850,0,17842161,13442471,66572592,323154,60441781,24
+176044,Mississippi Valley State University,2023,Mississippi,Yes,"Public, 4-year or above",1612,0,16893390,12845918,63618237,505423,55983410,14
+176372,University of Southern Mississippi,2023,Mississippi,No,"Public, 4-year or above",11101,0,100798430,25135719,373327224,866976,331106251,34
+177551,Harris-Stowe State University,2023,Missouri,Yes,"Public, 4-year or above",991,0,12373647,2821899,45294843,109800,44791865,14
+177940,Lincoln University,2023,Missouri,Yes,"Public, 4-year or above",1465,5176932,26578618,4481079,63429097,1706765,59178270,10
+178420,University of Missouri-St Louis,2023,Missouri,No,"Public, 4-year or above",8932,0,63062492,26399694,250037481,13612327,230086704,36
+179566,Missouri State University-Springfield,2023,Missouri,No,"Public, 4-year or above",17399,0,95408336,29382426,392609400,765397,321992006,42
+197869,Appalachian State University,2023,North Carolina,No,"Public, 4-year or above",19843,0,187163788,53823407,584540883,1039527,324246393,58
+198464,East Carolina University,2023,North Carolina,No,"Public, 4-year or above",22730,0,355729327,48380025,1084095689,6494916,557886208,43
+198507,Elizabeth City State University,2023,North Carolina,Yes,"Public, 4-year or above",1892,0,48019353,6315860,106054700,3504661,66730622,30
+198543,Fayetteville State University,2023,North Carolina,Yes,"Public, 4-year or above",5483,0,82685093,12530677,189469680,1573458,116482902,21
+199102,North Carolina A & T State University,2023,North Carolina,Yes,"Public, 4-year or above",12735,0,126463127,59277456,462426429,17465860,319293595,34
+199148,University of North Carolina at Greensboro,2023,North Carolina,No,"Public, 4-year or above",15161,0,198793472,55692750,561045296,21728211,357822342,40
+199281,University of North Carolina at Pembroke,2023,North Carolina,No,"Public, 4-year or above",5788,0,101766391,19770775,174937890,1684456,117967663,28
+199999,Winston-Salem State University,2023,North Carolina,Yes,"Public, 4-year or above",4356,0,71695469,7011198,185681507,2114443,118223448,33
+201690,Central State University,2023,Ohio,Yes,"Public, 4-year or above",2838,0,15587324,7766214,105682965,1485431,78424820,14
+206604,Wright State University-Main Campus,2023,Ohio,No,"Public, 4-year or above",7857,0,79044604,27914976,286056926,1507541,220934615,29
+211608,Cheyney University of Pennsylvania,2023,Pennsylvania,Yes,"Public, 4-year or above",688,6163963,19378060,4467387,34251884,630886,31125498,11
+213020,Indiana University of Pennsylvania-Main Campus,2023,Pennsylvania,No,"Public, 4-year or above",7920,5424951,56895233,21565980,203043588,1483701,139143885,37
+213598,Lincoln University,2023,Pennsylvania,Yes,"Public, 4-year or above",1764,,,,,,,39
+216764,West Chester University of Pennsylvania,2023,Pennsylvania,No,"Public, 4-year or above",15060,7174892,81426349,45983427,345298275,953459,261951355,53
+217882,Clemson University,2023,South Carolina,No,"Public, 4-year or above",26784,12844759,180210631,92324616,1553288431,798342,1058754037,68
+218733,South Carolina State University,2023,South Carolina,Yes,"Public, 4-year or above",2857,0,64986357,7277511,137465051,2217832,99946977,14
+221740,The University of Tennessee-Chattanooga,2023,Tennessee,No,"Public, 4-year or above",10422,0,78390580,26048721,257483722,2695298,224378760,35
+221838,Tennessee State University,2023,Tennessee,Yes,"Public, 4-year or above",7185,0,62256588,11049436,250364782,10864991,210794572,21
+224147,Texas A & M University-Corpus Christi,2023,Texas,No,"Public, 4-year or above",8309,0,74942190,42221532,291549378,632173,263781957,20
+227526,Prairie View A & M University,2023,Texas,Yes,"Public, 4-year or above",8880,13570890,58416977,35268846,343421651,12538942,263119037,19
+228459,Texas State University,2023,Texas,No,"Public, 4-year or above",34435,0,188993720,65133513,827166454,2630961,688285921,37
+229063,Texas Southern University,2023,Texas,Yes,"Public, 4-year or above",7687,0,66601673,11836502,339290718,16576960,242850517,6
+232186,George Mason University,2023,Virginia,No,"Public, 4-year or above",32379,0,223475734,131546641,1233308582,16179975,1006138662,48
+232423,James Madison University,2023,Virginia,No,"Public, 4-year or above",21322,0,145184927,62235431,836382918,7041987,431268519,67
+232566,Longwood University,2023,Virginia,No,"Public, 4-year or above",3670,0,48455343,9512364,169929900,1652347,86261636,47
+232937,Norfolk State University,2023,Virginia,Yes,"Public, 4-year or above",5564,0,108622218,21069410,260247521,1745046,185946443,8
+234155,Virginia State University,2023,Virginia,Yes,"Public, 4-year or above",4958,0,89498451,9094714,311286072,15249847,146354937,27
+237215,Bluefield State University,2023,West Virginia,Yes,"Public, 4-year or above",1075,0,6648770,1050122,26088870,75183,21670706,21
+237525,Marshall University,2023,West Virginia,No,"Public, 4-year or above",9395,0,70029954,32969947,341705634,896579,273987105,34
+237899,West Virginia State University,2023,West Virginia,Yes,"Public, 4-year or above",2206,0,15832709,820722,61961660,187543,48439002,25
+238032,West Virginia University,2023,West Virginia,No,"Public, 4-year or above",22365,0,186725322,53267505,1260059744,2237096,1110797872,43
+486840,Kennesaw State University,2023,Georgia,No,"Public, 4-year or above",37213,0,232187066,78316318,714821503,10446405,563104401,21
